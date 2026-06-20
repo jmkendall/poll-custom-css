@@ -1,0 +1,288 @@
+/*
+Use your custom theme:
+Select "Custom" theme in the dashboard
+On your https://poll.ma.pe/overlay/<id>/ URL add ?customCss=https://example.com/style.css
+
+Please keep the link to https://poll.ma.pe visible for a short period of time.
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Abel);
+
+:root {
+  /* Clean Teal/Blue Palette - WCAG AAA Compliant */
+  --color-primary: #0ea5e9;      /* Sky-500 */
+  --color-secondary: #14b8a6;    /* Teal-500 */
+  --color-background: #0f172a;   /* Slate-900 */
+  --color-text: #f1f5f9;         /* Slate-100 */
+  --color-accent: #f472b6;       /* Pink-400 */
+  
+  /* Additional shades for depth */
+  --color-primary-dark: #0284c7; /* Sky-600 */
+  --color-secondary-dark: #0d9488; /* Teal-600 */
+  --color-background-light: #1e293b; /* Slate-800 */
+  --color-text-muted: #94a3b8;   /* Slate-400 */
+  
+  /* Image URLs for poll options (fallback to emoji if not set) */
+  /* Format: url('https://example.com/image.png') or none */
+  --poll-option-image-1: none;
+  --poll-option-image-2: none;
+  --poll-option-image-3: none;
+  --poll-option-image-4: none;
+  --poll-option-image-5: none;
+  --poll-option-image-6: none;
+  --poll-option-image-7: none;
+  --poll-option-image-8: none;
+  --poll-option-image-9: none;
+  --poll-option-image-10: none;
+}
+
+/*
+* "custom" refers to the theme assigned to the poll element
+*/
+.custom {
+	background: var(--color-background);
+	width: 400px;
+	transition: opacity 1s;
+	padding: 10px;
+	border: 2px solid var(--color-primary);
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+	font-family: Abel;
+
+	/* Hide when not active */
+	opacity: 0;
+}
+
+.custom.finished,
+.custom.active {
+	opacity: 1;
+}
+
+/* Optional outer border */
+.custom .border {
+	border: 5px solid var(--color-primary);
+}
+
+.custom .metaInfo {
+	background: rgba(255, 255, 255, 0.1);
+	overflow: hidden;
+	padding: 0 10px;
+	border-radius: 8px;
+	margin-top: 20px;
+}
+.custom .total, .custom .duration {
+	background: rgba(255, 255, 255, 0.1);
+	float: left;
+	width: 49%;
+	text-align: center;
+	padding: 10px;
+	margin: 10px 0;
+	line-height: 1.3;
+}
+.custom .total strong,
+.custom .duration strong {
+	color: var(--color-text);
+	font-size: 20px;
+	display: block;
+}
+.custom .total {
+	margin-right: 2%;
+}
+.custom.finished .options li,
+.custom.removing .options li {
+	opacity: 0.3;
+	transition: all 1s;
+}
+.custom.finished .options li.highest,
+.custom.removing .options li.highest {
+	border: 2px solid var(--color-accent);
+	box-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
+	opacity: 1;
+}
+
+.custom.finished .options li.help,
+.custom.removing .options li.help {
+	height: 0;
+}
+.custom.finished .metaInfo,
+.custom.removing .metaInfo {
+	opacity: 0.3;
+}
+.custom.active .options li.help {
+	height: 35px;
+}
+.custom .options li {
+	position: relative;
+	border: 1px solid var(--color-secondary-dark);
+	padding: 10px;
+	color: var(--color-text);
+	text-overflow: ellipsis;
+	background: var(--color-background-light);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-right: 55px;
+	padding-left: 55px;
+	font-size: 15px;
+	border-radius: 8px;
+	margin-bottom: 10px;
+}
+.custom .options li.question {
+	padding: 10px 20px;
+	white-space: normal;
+	background: transparent;
+	clear: both;
+	line-height: 1.3;
+	font-size: 20px;
+	position: relative;
+	color: var(--color-text);
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.custom .options li.help {
+	background: transparent;
+	text-align: center;
+	overflow: hidden;
+	height: 0;
+	color: var(--color-text-muted);
+	font-size: 0.9em;
+	margin-bottom: 20px;
+}
+.custom .options li.help span {
+	display: block;
+	padding: 10px;
+}
+.custom .options li .procent {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	color: var(--color-secondary);
+	font-weight: bold;
+	font-size: 1.1em;
+}
+.custom .options li .number {
+	padding: 5px 10px;
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	color: var(--color-primary);
+	font-weight: bold;
+	font-size: 1.2em;
+	border-radius: 4px;
+}
+.custom .options li .bar {
+	background: rgba(0, 0, 0, 0.3);
+	height: 5px;
+	margin-top: 5px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.custom .options li .bar .bar-inner {
+	background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+	height: 100%;
+	width: 0;
+	transition: width 0.3s ease;
+	position: relative;
+}
+.custom .options li .text {
+	line-height: 1.3;
+}
+
+/* Background images for options */
+.custom .options li:nth-child(3) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-1, none);
+}
+.custom .options li:nth-child(4) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-2, none);
+}
+.custom .options li:nth-child(5) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-3, none);
+}
+.custom .options li:nth-child(6) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-4, none);
+}
+.custom .options li:nth-child(7) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-5, none);
+}
+.custom .options li:nth-child(8) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-6, none);
+}
+.custom .options li:nth-child(9) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-7, none);
+}
+.custom .options li:nth-child(10) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-8, none);
+}
+.custom .options li:nth-child(11) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-9, none);
+}
+.custom .options li:nth-child(12) {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), var(--poll-option-image-10, none);
+}
+
+.custom .credits {
+	opacity: 0;
+	height: 0;
+}
+.custom .credits {
+	text-align: center;
+	opacity: 1;
+	transition: all 1s;
+	height: 25px;
+	clear: both;
+	overflow: hidden;
+	color: var(--color-text-muted);
+	font-size: 0.75em;
+	margin-top: 15px;
+}
+.custom.active .credits, .custom.removing .credits {
+	height: 0;
+	opacity: 0;
+}
+
+/*
+* Positioning
+*/
+.custom.topLeft {
+	top: 20px;
+	left: 20px;
+}
+.custom.topCenter {
+	top: 20px;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+.custom.topRight {
+	top: 20px;
+	right: 20px;
+}
+.custom.middleLeft {
+	top: 50%;
+	transform: translate(0, -50%);
+	left: 20px;
+}
+.custom.middleCenter {
+	top: 50%;
+	transform: translate(-50%, -50%);
+	left: 50%;
+}
+.custom.middleRight {
+	top: 50%;
+	transform: translate(0, -50%);
+	right: 20px;
+}
+.custom.bottomLeft {
+	bottom: 20px;
+	left: 20px;
+}
+.custom.bottomCenter {
+	bottom: 20px;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+.custom.bottomRight {
+	bottom: 20px;
+	right: 20px;
+}
